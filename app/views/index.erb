@@ -1,0 +1,20 @@
+
+<H1>Recipe</H1>
+  <%@recipes.each do |attribute|%>
+  <a href="/recipes/<%=attribute.id%>">Recipe Name:<%=attribute.name%></a>
+  <br>
+  <a href="/recipes/<%=attribute.id%>">Recipe:<%=attribute.ingredients%></a><br>
+ 
+  <a href="/recipes/<%=attribute.id%>">Cooktime in Min:<%=attribute.cook_time%> minutes</a><br>
+ <%end%>
+
+
+<H1>Submit new recipe</H1>
+<form action="/recipes/new" method="POST">
+  Recipe Name:<br>
+  <input type="text" name="name"><br>
+  Recipe:<br>
+  <input type="text" name="ingredients">
+  Cooktime in Min:<input type="number" name="cook_time">
+   <input type="submit" value="Submit">
+</form>
