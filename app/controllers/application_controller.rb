@@ -39,6 +39,8 @@ class ApplicationController < Sinatra::Base
     @recipe = Recipe.find(params[:id])
     @recipe.update(params)
     redirect to "/recipes/#{@recipe.id}"
+
+    #can also rework params hash as nested
   end
 
   #DELETE
