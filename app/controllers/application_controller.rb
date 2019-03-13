@@ -9,39 +9,39 @@ class ApplicationController < Sinatra::Base
   end
 
   # code actions here!
+  #CREATE
+  get '/recipes/new' do
+    erb :new
+  end
+
+  post '/recipes' do #creates new model instance
+    @recipe = Recipe.create(params)
+    redirect to "/recipes/#{@recipe.id}"
+  end
+  #READ
   get '/recipes' do
     @recipes = Recipe.all
     erb :index
   end
 
-  get '/recipes/new' do
-    erb :new
-  end
-
-  get '/recipes/:id' do
+  get '/recipes/:id' do #CONTAINS PART OF DELETE
     @recipe = Recipe.find_by_id(params[:id])
     erb :show
   end
-
+  #UPDATE
   get '/recipes/:id/edit' do #load edit form
     @recipe = Recipe.find_by_id(params[:id])
     erb :edit
   end
 
   patch '/recipes/:id' do #edit action
-    @recipe = Recipe.find_by_id(params[:id])
-    @recipe.name = params[:name]
-    @recipe.ingredients = params[:ingredients]
-    @recipe.cook_time = params[:cook_time]
-    @recipe.save
+    params.delete("_method")
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(params)
     redirect to "/recipes/#{@recipe.id}"
   end
 
-  post '/recipes' do
-    @recipe = Recipe.create(params)
-    redirect to "/recipes/#{@recipe.id}"
-  end
-
+  #DELETE
   delete '/recipes/:id' do #delete action
     @recipe = Recipe.find_by_id(params[:id])
     @recipe.destroy
