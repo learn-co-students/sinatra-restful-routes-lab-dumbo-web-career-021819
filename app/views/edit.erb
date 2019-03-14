@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>edit</title>
+  </head>
+  <body>
+    <form class="" action="/recipes/<%= @recipe.id %>/edit" method="post">
+      <input type="hidden" name="_method" value="PATCH">
+      <p>Name: <input type="text" name="name" placeholder="<%= @recipe.name %>"></p>
+      <p>Ingredients: <input type="text" name="ingredients" placeholder="<%= @recipe.ingredients %>"></p>
+      <p>Cook Time: <input type="text" name="cook_time" placeholder="<%= @recipe.cook_time  %> "></p>
+      <input type="submit" name="" value="Did you add waffles?">
+    </form>
+  </body>
+</html>
